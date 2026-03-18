@@ -1,24 +1,47 @@
 @import "tailwindcss";
 
 @theme {
+  /* --- Brand Identity Primitives --- */
   --color-brand-jungle: #004b49;
-  /* --color-brand-gold: #e2b05e; */
-  --color-brand-gold: #e3a177;
-  --color-brand-darker: #003635;
+  --color-brand-gold: #e2b05e; /* Golden Rose accent */
+  --color-brand-darker: #002b2a;
+
+  /* --- Semantic Tokens (The "Architect" Way) --- */
+  --color-surface-primary: var(--color-brand-jungle);
+  --color-surface-secondary: var(--color-brand-darker);
+  --color-text-main: #ffffff;
+  --color-text-dim: rgba(255, 255, 255, 0.6);
+  --color-accent: var(--color-brand-gold);
+  
+  /* --- Effects --- */
+  --shadow-glow: 0 0 20px rgba(226, 176, 94, 0.2);
+  --radius-magic: 1.5rem;
 }
 
-:root {
-  --background: var(--color-brand-jungle);
-  --foreground: #ffffff;
-  --accent: var(--color-brand-gold);
+/* --- Base Styles --- */
+@layer base {
+  body {
+    @apply bg-brand-darker text-white antialiased selection:bg-brand-gold selection:text-brand-jungle;
+    font-feature-settings: "ss01", "ss02", "cv01";
+  }
+
+  /* Custom Scrollbar for the "Vibe" */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-brand-darker;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-brand-gold/20 rounded-full hover:bg-brand-gold/40 transition-colors;
+  }
 }
 
-body {
-  color: var(--foreground);
-  min-height: 100vh;
-  background: radial-gradient(
-    circle at top left,
-    var(--color-brand-jungle),
-    #002b2a
-  );
+/* --- Utility Layers --- */
+@utility glass-morphism {
+  @apply bg-white/5 backdrop-blur-xl border border-white/10 shadow-glow;
+}
+
+@utility text-gradient-gold {
+  @apply bg-linear-to-r from-brand-gold via-[#f3d39a] to-brand-gold bg-clip-text text-transparent;
 }
