@@ -4,7 +4,8 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Leaf, Github, Menu } from 'lucide-react';
 import { Button } from '@/components/atoms/Button';
-import { Text } from '@/components/atoms/Text'; // Importamos el átomo ⚛️
+import { Text } from '@/components/atoms/Text'; 
+import { Toggle } from '@/components/atoms/Toggle'; 
 
 export const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -30,7 +31,7 @@ export const Navbar = () => {
             <Leaf size={20} fill="currentColor" />
           </div>
           <Text variant="h3" className="text-xl">
-            e8b<span className="text-brand-gold">.</span>studio
+            e8b<span className="text-accent">.</span>studio
           </Text>
         </div>
 
@@ -38,7 +39,7 @@ export const Navbar = () => {
         <div className="hidden md:flex items-center gap-8">
           {['Labs', 'Architecture', 'Grimoire'].map((item) => (
             <a key={item} href={`#${item.toLowerCase()}`} className="group">
-              <Text variant="label" className="text-brand-gold/60 group-hover:text-brand-gold transition-colors duration-300">
+              <Text variant="label" className="text-accent/60 group-hover:text-accent transition-colors duration-300">
                 {item}
               </Text>
             </a>
@@ -47,11 +48,12 @@ export const Navbar = () => {
 
         {/* Actions */}
         <div className="flex items-center gap-4">
-          <Github className="w-5 h-5 text-brand-gold/40 hover:text-brand-gold cursor-pointer transition-colors" />
+          <Github className="w-5 h-5 text-accent/40 hover:text-accent cursor-pointer transition-colors" />
+          <Toggle />
           <Button variant="outline" className="py-2 px-5 text-sm">
             Contact 🪶
           </Button>
-          <Menu className="md:hidden text-brand-gold" />
+          <Menu className="md:hidden text-accent" />
         </div>
       </div>
     </motion.nav>

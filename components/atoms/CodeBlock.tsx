@@ -19,7 +19,7 @@ export const CodeBlock = ({ code, language = 'typescript' }: CodeBlockProps) => 
           <div className="w-2.5 h-2.5 rounded-full bg-amber-500/20" />
           <div className="w-2.5 h-2.5 rounded-full bg-emerald-500/20" />
         </div>
-        <span className="text-[10px] text-brand-gold/30 uppercase tracking-widest font-mono">
+        <span className="text-[10px] text-accent/30 uppercase tracking-widest font-mono">
           {language}
         </span>
       </div>

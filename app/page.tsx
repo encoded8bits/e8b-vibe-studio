@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Navbar } from "@/components/organisms/Navbar";
 import { SpellCard } from "@/components/molecules/SpellCard";
 import { CodeExperiment } from "@/components/organisms/CodeExperiment"; // New Import! 🪄
 import { Wand2, Feather, Leaf } from "lucide-react";
@@ -16,8 +15,8 @@ export default function VibeCheckPage() {
         animate={{ opacity: 1, y: 0 }}
         className="z-10 text-center space-y-8 mb-24"
       >
-        <h1 className="text-5xl md:text-7xl font-bold tracking-tighter text-white">
-          e8b-<span className="text-brand-gold font-serif italic">vibe</span>-studio
+        <h1 className="text-5xl md:text-7xl font-bold tracking-tighter text-text-main transition-colors duration-500">
+          e8b-<span className="text-accent font-serif italic">vibe</span>-studio
         </h1>
         <div className="flex justify-center gap-4">
           <Button><Wand2 size={18} /> Invoke Ritual</Button>
@@ -56,7 +55,7 @@ export default function VibeCheckPage() {
       {/* 3. THE CODE EXPERIMENT (The logic showcase) 🪶 */}
       <CodeExperiment />
 
-      <footer className="py-12 text-brand-gold/30 text-[10px] tracking-[0.3em] uppercase">
+      <footer className="py-12 text-accent/30 text-[10px] tracking-[0.3em] uppercase">
         Magia Digital • 2026 🏛️🌿
       </footer>
     </main>

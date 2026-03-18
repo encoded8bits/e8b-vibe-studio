@@ -18,7 +18,7 @@ export const Button = ({
   
   const variants = {
     primary: "bg-brand-gold text-brand-jungle hover:bg-white hover:shadow-[0_0_30px_rgba(226,176,94,0.4)]",
-    outline: "border-2 border-brand-gold/50 text-brand-gold hover:border-brand-gold hover:bg-brand-gold/5"
+    outline: "border-2 border-brand-gold/50 text-accent hover:border-brand-gold hover:bg-brand-gold/5"
   };
 
   return (

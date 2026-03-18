@@ -1,47 +1,45 @@
 @import "tailwindcss";
 
 @theme {
-  /* --- Brand Identity Primitives --- */
+  /* --- Primitivos (Valores fijos) --- */
   --color-brand-jungle: #004b49;
-  --color-brand-gold: #e2b05e; /* Golden Rose accent */
+  --color-brand-gold: #e2b05e;
   --color-brand-darker: #002b2a;
+  --color-sanctuary-white: #fdfdfc;
+  --color-sanctuary-stone: #e2e2e0;
 
-  /* --- Semantic Tokens (The "Architect" Way) --- */
+  /* --- Tokens Semánticos (Variables que usaremos en el código) --- */
   --color-surface-primary: var(--color-brand-jungle);
   --color-surface-secondary: var(--color-brand-darker);
   --color-text-main: #ffffff;
-  --color-text-dim: rgba(255, 255, 255, 0.6);
+  --color-text-dim: rgba(255, 255, 255, 0.7);
   --color-accent: var(--color-brand-gold);
-  
-  /* --- Effects --- */
-  --shadow-glow: 0 0 20px rgba(226, 176, 94, 0.2);
-  --radius-magic: 1.5rem;
 }
 
-/* --- Base Styles --- */
+/* --- THE ENGINE: Aquí es donde ocurre el re-mapeo fuera de @theme --- */
+:root {
+  /* Variables base (Dark por defecto) ya definidas en @theme */
+}
+ 
+ [data-theme='light'] {
+  /* Un fondo un poco más cálido y limpio */
+  --color-surface-secondary: #f9f9f8; 
+  /* Cards con un blanco puro para que resalten */
+  --color-surface-primary: #ffffff; 
+  
+  /* Texto más profundo para legibilidad */
+  --color-text-main: #001a19; 
+  --color-text-dim: #4a5a59;
+  
+  /* Un dorado más "quemado" para que no desaparezca en el blanco */
+  --color-accent: #a67c37; 
+  
+  /* Bordes sutiles para definir formas sin el negro */
+  --color-border-subtle: rgba(0, 0, 0, 0.05);
+}
+
 @layer base {
   body {
-    @apply bg-brand-darker text-white antialiased selection:bg-brand-gold selection:text-brand-jungle;
-    font-feature-settings: "ss01", "ss02", "cv01";
+    @apply bg-surface-secondary text-text-main transition-colors duration-500 antialiased;
   }
-
-  /* Custom Scrollbar for the "Vibe" */
-  ::-webkit-scrollbar {
-    width: 8px;
-  }
-  ::-webkit-scrollbar-track {
-    @apply bg-brand-darker;
-  }
-  ::-webkit-scrollbar-thumb {
-    @apply bg-brand-gold/20 rounded-full hover:bg-brand-gold/40 transition-colors;
-  }
-}
-
-/* --- Utility Layers --- */
-@utility glass-morphism {
-  @apply bg-white/5 backdrop-blur-xl border border-white/10 shadow-glow;
-}
-
-@utility text-gradient-gold {
-  @apply bg-linear-to-r from-brand-gold via-[#f3d39a] to-brand-gold bg-clip-text text-transparent;
 }
