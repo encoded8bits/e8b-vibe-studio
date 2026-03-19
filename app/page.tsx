@@ -5,6 +5,7 @@ import { SpellCard } from "@/components/molecules/SpellCard";
 import { CodeExperiment } from "@/components/organisms/CodeExperiment"; // New Import! 🪄
 import { Wand2, Feather, Leaf } from "lucide-react";
 import { Button } from "@/components/atoms/Button";
+import { InvokeRitual } from '@/components/organisms/InvokeRitual';
 
 export default function VibeCheckPage() {
   return (
@@ -54,6 +55,11 @@ export default function VibeCheckPage() {
 
       {/* 3. THE CODE EXPERIMENT (The logic showcase) 🪶 */}
       <CodeExperiment />
+
+      {/* 4. THE INVOKE RITUAL (El Wizard) 🏛️🪄 */}
+      <section className="w-full max-w-3xl mb-32">
+         <InvokeRitual />
+      </section>
 
       <footer className="py-12 text-accent/30 text-[10px] tracking-[0.3em] uppercase">
         Magia Digital • 2026 🏛️🌿

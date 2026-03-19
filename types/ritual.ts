@@ -1,7 +1,7 @@
-export type RitualStep = 'VIBE' | 'POWER' | 'SANCTUARY';
+export type RitualStep = 1 | 2 | 3 | 'COMPLETE';
 
 export interface RitualData {
   vibe: 'minimalist' | 'brutalist' | 'organic' | null;
-  powerLevel: number; // 1-100
+  intensity: number; // 0-100 (conectado a nuestra ProgressBar)
   sanctuaryName: string;
 }
