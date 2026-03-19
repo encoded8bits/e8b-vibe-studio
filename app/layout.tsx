@@ -37,7 +37,7 @@ export const metadata = {
     siteName: 'e8b-vibe-studio',
     images: [
       {
-        url: '/og-e8b-vibe-studio-optimized.png', // 👇 Ruta relativa a la carpeta public
+        url: '/og-e8b-vibe-studio.png', // 👇 Ruta relativa a la carpeta public
         width: 1200,
         height: 630,
         alt: 'e8b-vibe-studio - Frontend Architecture Lab by Chris',
@@ -52,7 +52,7 @@ export const metadata = {
     card: 'summary_large_image', // Muestra la imagen grande, no el cuadrito pequeño
     title: 'e8b-vibe-studio | Chris',
     description: 'Senior Frontend Architecture Lab.',
-    images: ['/og-e8b-vibe-studio-optimized.png'], // Misma imagen
+    images: ['/og-e8b-vibe-studio.png'], // Misma imagen
   },
 };
 
