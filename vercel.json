@@ -1,0 +1,10 @@
+{
+  "cleanUrls": true,
+  "framework": "nextjs",
+  "regions": ["iad1"],
+  "images": {
+    "sizes": [256, 384, 512, 640, 750, 828, 1080],
+    "domains": [],
+    "minimumCacheTTL": 60
+  }
+}
