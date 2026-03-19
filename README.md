@@ -32,7 +32,9 @@ Advanced logic visualization through a **polymorphic CodeBlock component** that 
 | :--- | :--- | :--- |
 | **Framework** | Next.js 16 (App Router) | High-performance Server-side Rendering & Routing. |
 | **UI Library** | React 19 | Cutting-edge state management and latest hooks. |
+| **Icons** | Lucide React | Accessible icon set for UI. |
 | **Styling** | Tailwind CSS v4 | Utility-first design with native CSS variables. |
+| **Theming** | `next-themes` | `data-theme` attribute and theme persistence. |
 | **Animations** | Framer Motion | Micro-interactions and high-fidelity visual feedback. |
 | **Deployment** | Vercel | Global Edge Infrastructure & Automated CI/CD. |
 
@@ -42,21 +44,35 @@ Advanced logic visualization through a **polymorphic CodeBlock component** that 
 
 The project follows the Atomic Design methodology to ensure modularity and scalability:
 
-- **Atoms:** `Button`, `Text`, `ProgressBar`, `CodeBlock`.
-- **Molecules:** `SpellCard`, `ThemeToggle`.
-- **Organisms:** `Navbar`, `InvokeRitual`, `CodeExperiment`.
-- **Templates/Pages:** `VibeCheckPage`.
+- **Atoms:** `Button`, `Text`, `ProgressBar`, `CodeBlock`, `CardPrimitive`, `Toggle`.
+- **Molecules:** `SpellCard`.
+- **Organisms:** `Navbar`, `InvokeRitual`, `CodeExperiment`, `Footer`.
+- **Providers:** `ThemeProvider`.
+- **Templates/Pages:** `app/page.tsx` (main landing).
 
 ---
 
 ## 🚀 Local Installation
 
+**Prerequisites:** Node.js 20+.
+
 ```bash
 # Clone the ritual
-git clone [https://github.com/your-username/e8b-vibe-studio.git](https://github.com/your-username/e8b-vibe-studio.git)
+git clone https://github.com/encoded8bits/e8b-vibe-studio.git
+cd e8b-vibe-studio
 
 # Install dependencies
 npm install
 
 # Start the laboratory
 npm run dev
+```
+
+### Scripts
+
+| Command | Description |
+| :--- | :--- |
+| `npm run dev` | Start dev server (Turbopack). |
+| `npm run build` | Production build. |
+| `npm run start` | Run production server locally. |
+| `npm run lint` | Run ESLint. |
