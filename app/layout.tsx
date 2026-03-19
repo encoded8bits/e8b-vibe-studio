@@ -15,8 +15,45 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
+/* export const metadata: Metadata = {
   title: "e8b.studio | digital alchemy & future-proof architecture 🏛️🌿",
+}; */
+
+// app/layout.tsx
+
+export const metadata = {
+  // Título básico para la pestaña del navegador
+  title: {
+    default: 'e8b-vibe-studio | Chris',
+    template: '%s | e8b-vibe-studio',
+  },
+  description: 'Senior Frontend Lab: Atomic Design & React 19 experimentation.',
+  
+  // 🌐 Configuración de Open Graph (LinkedIn, FB, WhatsApp)
+  openGraph: {
+    title: 'e8b-vibe-studio | Frontend Lab by Chris',
+    description: 'Manifestation of Atomic Architecture and Semantic Design Systems.',
+    url: 'https://e8b-vibe-studio.vercel.app/', // Tu URL de Vercel
+    siteName: 'e8b-vibe-studio',
+    images: [
+      {
+        url: '/og-e8b-vibe-studio', // 👇 Ruta relativa a la carpeta public
+        width: 1200,
+        height: 630,
+        alt: 'e8b-vibe-studio - Frontend Architecture Lab by Chris',
+      },
+    ],
+    locale: 'es_CR', // O 'en_US' si prefieres
+    type: 'website',
+  },
+  
+  // 🐦 Configuración para Twitter (X)
+  twitter: {
+    card: 'summary_large_image', // Muestra la imagen grande, no el cuadrito pequeño
+    title: 'e8b-vibe-studio | Chris',
+    description: 'Senior Frontend Architecture Lab.',
+    images: ['/og-e8b-vibe-studio'], // Misma imagen
+  },
 };
 
 export default function RootLayout({
