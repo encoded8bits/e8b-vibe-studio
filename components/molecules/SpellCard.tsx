@@ -14,8 +14,8 @@ export const SpellCard = ({ title, description, icon: Icon, tag }: SpellCardProp
   return (
     <CardPrimitive>
       <div className="space-y-4 text-left">
-        {/* Icon Wrapper Atom Pattern */}
-        <div className="inline-flex p-3 rounded-xl bg-brand-jungle border border-brand-gold/20 text-accent group-hover:scale-110 transition-transform duration-500">
+        {/* Usamos surface-secondary para el fondo del icono y border-subtle */}
+        <div className="inline-flex p-3 rounded-xl bg-surface-secondary border border-border-subtle text-accent group-hover:scale-110 transition-transform duration-500">
           <Icon size={24} strokeWidth={1.5} />
         </div>
         
@@ -24,7 +24,8 @@ export const SpellCard = ({ title, description, icon: Icon, tag }: SpellCardProp
           <Text variant="h3" className="group-hover:text-accent transition-colors duration-300">
             {title}
           </Text>
-          <Text variant="body" className="group-hover:text-text-dim transition-colors duration-300">
+          {/* Eliminamos el group-hover:text-text-dim porque ya es el default */}
+          <Text variant="body">
             {description}
           </Text>
         </div>

@@ -21,21 +21,13 @@
   /* Variables base (Dark por defecto) ya definidas en @theme */
 }
  
- [data-theme='light'] {
-  /* Un fondo un poco más cálido y limpio */
-  --color-surface-secondary: #f9f9f8; 
-  /* Cards con un blanco puro para que resalten */
-  --color-surface-primary: #ffffff; 
-  
-  /* Texto más profundo para legibilidad */
-  --color-text-main: #001a19; 
-  --color-text-dim: #4a5a59;
-  
-  /* Un dorado más "quemado" para que no desaparezca en el blanco */
-  --color-accent: #a67c37; 
-  
-  /* Bordes sutiles para definir formas sin el negro */
-  --color-border-subtle: rgba(0, 0, 0, 0.05);
+[data-theme='light'] {
+  --color-surface-secondary: #f4f4f2; /* Fondo hueso limpio */
+  --color-surface-primary: #ffffff;   /* Cards blancas puras */
+  --color-text-main: #002b2a;         /* Jungle Darker para máxima legibilidad */
+  --color-text-dim: #4a5a59;          /* Gris verdoso para jerarquía */
+  --color-accent: #926d27;            /* Un oro más profundo/saturado que pasa el test A11y sobre blanco */
+  --color-border-subtle: rgba(0, 43, 42, 0.08);
 }
 
 @layer base {

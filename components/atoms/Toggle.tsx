@@ -1,16 +1,15 @@
 "use client";
 
-import * as React from "react";
+import React, { useEffect, useState } from "react";
 import { Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 import { motion, AnimatePresence } from "framer-motion";
 
 export const Toggle = () => {
   const { theme, setTheme } = useTheme();
-  const [mounted, setMounted] = React.useState(false);
+  const [mounted, setMounted] = useState(false);
 
-  // Evitamos FOUC (Flash of Unstyled Content)
-  React.useEffect(() => setMounted(true), []);
+  useEffect(() => setMounted(true), []);
   if (!mounted) return null;
 
   const isDark = theme === "dark";
@@ -18,11 +17,11 @@ export const Toggle = () => {
   return (
     <button
       onClick={() => setTheme(isDark ? "light" : "dark")}
-      className="relative cursor-pointer flex items-center justify-center p-2 rounded-lg border border-brand-gold/20 bg-brand-darker/50 hover:border-brand-gold/60 transition-colors group overflow-hidden"
+      className="relative cursor-pointer flex items-center justify-center p-2 rounded-lg border border-border-subtle bg-surface-primary hover:border-accent/50 transition-all duration-300 group overflow-hidden shadow-sm"
       aria-label="Toggle Theme"
     >
-      {/* Glow Effect */}
-      <div className="absolute inset-0 bg-brand-gold/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-md" />
+      {/* Glow Effect dinámico usando el token accent */}
+      <div className="absolute inset-0 bg-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-md" />
 
       <AnimatePresence mode="wait" initial={false}>
         <motion.div
