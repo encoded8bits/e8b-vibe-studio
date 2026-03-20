@@ -41,6 +41,7 @@ export const metadata = {
         width: 1200,
         height: 630,
         alt: 'e8b-vibe-studio - Frontend Architecture Lab by Chris',
+        type: 'image/png',
       },
     ],
     locale: 'es_CR', // O 'en_US' si prefieres
