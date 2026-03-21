@@ -35,3 +35,11 @@
     @apply bg-surface-secondary text-text-main transition-colors duration-500 antialiased;
   }
 }
+
+/* app/globals.css */
+
+/* Clase inyectada por el Átomo Cursor al body */
+.cursor-none-global,
+.cursor-none-global * {
+  cursor: none !important;
+}

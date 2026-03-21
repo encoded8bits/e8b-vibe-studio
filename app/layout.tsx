@@ -4,7 +4,7 @@ import "./globals.css";
 import { Navbar } from "@/components/organisms/Navbar";
 import { Footer } from "@/components/organisms/Footer"; // Import the new Organism 🪄
 import { ThemeProvider } from "@/components/providers/ThemeProvider"; // Importa el Provider
-
+import { Cursor } from "@/components/atoms/Cursor";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -22,6 +22,8 @@ const geistMono = Geist_Mono({
 // app/layout.tsx
 
 export const metadata = {
+
+  metadataBase: new URL('https://e8b-vibe-studio.vercel.app'),
   // Título básico para la pestaña del navegador
   title: {
     default: 'e8b-vibe-studio | Chris',
@@ -75,7 +77,9 @@ export default function RootLayout({
             </main>
             <Footer />
         </div>
+        <Cursor />
         </ThemeProvider>
+        
       </body>
     </html>
   );

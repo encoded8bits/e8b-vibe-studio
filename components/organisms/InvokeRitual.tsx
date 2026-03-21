@@ -6,6 +6,7 @@ import { ProgressBar } from '@/components/atoms/ProgressBar';
 import { Button } from '@/components/atoms/Button';
 import { Text } from '@/components/atoms/Text';
 import { RitualData, RitualStep } from '@/types/ritual';
+import useSound from "use-sound";
 
 export const InvokeRitual = () => {
   const [step, setStep] = useState<RitualStep>(1);
@@ -14,7 +15,7 @@ export const InvokeRitual = () => {
     intensity: 50,
     sanctuaryName: ''
   });
-
+  const [play] = useSound('/sounds/magic-sparkle.mp3', { volume: 0.5 });
   // Progress value for the ProgressBar atom
   const progress = (step === 'COMPLETE') ? 100 : ((step - 1) / 3) * 100;
 
@@ -23,9 +24,13 @@ export const InvokeRitual = () => {
     setStep((prev): RitualStep => {
       if (prev === 1) return 2;
       if (prev === 2) return 3;
-      if (prev === 3) return 'COMPLETE';
+      if (prev === 3) {
+        play();
+        return 'COMPLETE';
+      }
       return prev; // Fallback when already COMPLETE
     });
+    
   };
 
   // 2. Go back one step
