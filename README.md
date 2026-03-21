@@ -24,6 +24,16 @@ A sophisticated 3-step configuration flow built with:
 ### 🪶 Code Experimentation Lab
 Advanced logic visualization through a **polymorphic CodeBlock component** that dynamically adapts its syntax highlighting based on the active system theme.
 
+### 🪶 The Alchemist’s Pointer (Canvas Engine)
+High-performance **custom cursor** built on the **HTML5 Canvas 2D API**, composed as a thin **Atomic** surface (`Cursor`) over a dedicated engine layer.
+
+- **Particle pipeline:** Star and radial “dot” sparkles with per-frame physics (friction, drift, twinkle), capped pool size, and **device pixel ratio**–aware canvas sizing for crisp rendering.
+- **Spawn tiers:** `trail` (movement), `burst` (entering interactive targets), and `intense` (ritual-scale bursts)—typed as `SparkleSpawnTier` and driven from a single spawn API.
+- **Performance discipline:** Cursor position and glow use **direct `transform` updates** and **`requestAnimationFrame`** so the UI thread isn’t spammed with React state on every mouse move.
+- **Theme coupling:** Accent color is read from **`--color-accent`** at draw time so sparkles track **Sanctuary / Jungle** modes without hardcoded palette drift.
+- **Cross-feature bridge:** `lib/sparkleEvents.ts` dispatches a typed **`CustomEvent`** so **The Invoke Ritual** (e.g. `magic-sparkle` SFX on completion) can trigger the same engine **in sync** with audio—no prop drilling through the tree.
+- **Inclusive defaults:** The engine mounts only for **`(pointer: fine)`** and respects **`prefers-reduced-motion: reduce`**; the system cursor is hidden via a scoped body class only while the engine is active.
+
 ---
 
 ## 🏗️ Architectural Stack
@@ -36,6 +46,7 @@ Advanced logic visualization through a **polymorphic CodeBlock component** that 
 | **Styling** | Tailwind CSS v4 | Utility-first design with native CSS variables. |
 | **Theming** | `next-themes` | `data-theme` attribute and theme persistence. |
 | **Animations** | Framer Motion | Micro-interactions and high-fidelity visual feedback. |
+| **Custom Cursor** | Canvas 2D + DOM portal | Particle sparkles, tiered spawns, `CustomEvent` bridge for ritual / SFX sync. |
 | **Deployment** | Vercel | Global Edge Infrastructure & Automated CI/CD. |
 
 ---
@@ -44,7 +55,7 @@ Advanced logic visualization through a **polymorphic CodeBlock component** that 
 
 The project follows the Atomic Design methodology to ensure modularity and scalability:
 
-- **Atoms:** `Button`, `Text`, `ProgressBar`, `CodeBlock`, `CardPrimitive`, `Toggle`.
+- **Atoms:** `Button`, `Text`, `ProgressBar`, `CodeBlock`, `CardPrimitive`, `Toggle`, `Cursor` (engine in `lib/cursor/` + `hooks/useCursorSuitability`).
 - **Molecules:** `SpellCard`.
 - **Organisms:** `Navbar`, `InvokeRitual`, `CodeExperiment`, `Footer`.
 - **Providers:** `ThemeProvider`.
