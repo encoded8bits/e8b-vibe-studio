@@ -1,14 +1,16 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ProgressBar } from '@/components/atoms/ProgressBar';
 import { Button } from '@/components/atoms/Button';
 import { Text } from '@/components/atoms/Text';
 import { RitualData, RitualStep } from '@/types/ritual';
 import useSound from "use-sound";
+import { dispatchSparkleBurst } from "@/lib/sparkleEvents";
 
 export const InvokeRitual = () => {
+  const ritualRootRef = useRef<HTMLDivElement>(null);
   const [step, setStep] = useState<RitualStep>(1);
   const [data, setData] = useState<RitualData>({
     vibe: null,
@@ -26,6 +28,19 @@ export const InvokeRitual = () => {
       if (prev === 2) return 3;
       if (prev === 3) {
         play();
+        requestAnimationFrame(() => {
+          const el = ritualRootRef.current;
+          if (el) {
+            const r = el.getBoundingClientRect();
+            dispatchSparkleBurst({
+              x: r.left + r.width / 2,
+              y: r.top + r.height / 2,
+              intense: true,
+            });
+          } else {
+            dispatchSparkleBurst({ intense: true });
+          }
+        });
         return 'COMPLETE';
       }
       return prev; // Fallback when already COMPLETE
@@ -46,7 +61,10 @@ export const InvokeRitual = () => {
   const canGoBack = step === 2 || step === 3;
 
   return (
-    <div className="max-w-2xl mx-auto p-8 space-y-8 bg-surface-primary border border-border-subtle rounded-3xl shadow-xl">
+    <div
+      ref={ritualRootRef}
+      className="max-w-2xl mx-auto p-8 space-y-8 bg-surface-primary border border-border-subtle rounded-3xl shadow-xl"
+    >
       {/* Wizard header */}
       <div className="space-y-2">
         <Text variant="label" className="text-accent">Step {step} of 3</Text>

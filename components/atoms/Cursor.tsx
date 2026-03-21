@@ -3,6 +3,10 @@
 
 import { useEffect, useState, useRef, useCallback } from "react";
 import { createPortal } from "react-dom";
+import {
+  SPARKLE_BURST_EVENT,
+  type SparkleBurstDetail,
+} from "@/lib/sparkleEvents";
 
 const useCursorSuitability = () => {
   const [isSuitable, setIsSuitable] = useState(false);
@@ -110,29 +114,49 @@ export const Cursor = () => {
   const [isHovering, setIsHovering] = useState(false);
   const isSuitable = useCursorSuitability();
 
-  const spawnSparkles = useCallback((cx: number, cy: number, burst: boolean) => {
-    const pool = sparklesRef.current;
-    const count = burst ? 10 : 2 + Math.floor(Math.random() * 4);
-    for (let i = 0; i < count; i++) {
-      if (pool.length >= MAX_SPARKLES) pool.shift();
-      const angle = Math.random() * Math.PI * 2;
-      const speed = burst ? 1.2 + Math.random() * 2.8 : 0.3 + Math.random() * 1.2;
-      const maxLife = burst ? 38 + Math.random() * 28 : 22 + Math.random() * 20;
-      pool.push({
-        x: cx + (Math.random() - 0.5) * (burst ? 14 : 8),
-        y: cy + (Math.random() - 0.5) * (burst ? 14 : 8),
-        vx: Math.cos(angle) * speed,
-        vy: Math.sin(angle) * speed - (burst ? 0.4 : 0.15),
-        life: maxLife,
-        maxLife,
-        size: burst ? 5 + Math.random() * 9 : 3 + Math.random() * 6,
-        rotation: Math.random() * Math.PI,
-        spin: (Math.random() - 0.5) * 0.35,
-        variant: Math.random() > 0.35 ? "star" : "dot",
-        twinklePhase: Math.random() * Math.PI * 2,
-      });
-    }
-  }, []);
+  const spawnSparkles = useCallback(
+    (cx: number, cy: number, burst: boolean, intense = false) => {
+      const pool = sparklesRef.current;
+      const count = intense
+        ? 34
+        : burst
+          ? 10
+          : 2 + Math.floor(Math.random() * 4);
+      const spread = intense ? 48 : burst ? 14 : 8;
+      for (let i = 0; i < count; i++) {
+        if (pool.length >= MAX_SPARKLES) pool.shift();
+        const angle = Math.random() * Math.PI * 2;
+        const speed = intense
+          ? 1.8 + Math.random() * 4.2
+          : burst
+            ? 1.2 + Math.random() * 2.8
+            : 0.3 + Math.random() * 1.2;
+        const maxLife = intense
+          ? 48 + Math.random() * 36
+          : burst
+            ? 38 + Math.random() * 28
+            : 22 + Math.random() * 20;
+        pool.push({
+          x: cx + (Math.random() - 0.5) * spread,
+          y: cy + (Math.random() - 0.5) * spread,
+          vx: Math.cos(angle) * speed,
+          vy: Math.sin(angle) * speed - (intense ? 0.55 : burst ? 0.4 : 0.15),
+          life: maxLife,
+          maxLife,
+          size: intense
+            ? 6 + Math.random() * 12
+            : burst
+              ? 5 + Math.random() * 9
+              : 3 + Math.random() * 6,
+          rotation: Math.random() * Math.PI,
+          spin: (Math.random() - 0.5) * (intense ? 0.5 : 0.35),
+          variant: Math.random() > 0.35 ? "star" : "dot",
+          twinklePhase: Math.random() * Math.PI * 2,
+        });
+      }
+    },
+    []
+  );
 
   useEffect(() => {
     if (!isSuitable) return;
@@ -236,8 +260,15 @@ export const Cursor = () => {
 
     rafId = requestAnimationFrame(animate);
 
+    const onSparkleBurst = (e: Event) => {
+      const d = (e as CustomEvent<SparkleBurstDetail>).detail;
+      if (!d || typeof d.x !== "number" || typeof d.y !== "number") return;
+      spawnSparkles(d.x, d.y, true, !!d.intense);
+    };
+
     window.addEventListener("mousemove", moveCursor);
     window.addEventListener("mouseover", onMouseOver);
+    window.addEventListener(SPARKLE_BURST_EVENT, onSparkleBurst);
 
     return () => {
       running = false;
@@ -245,6 +276,7 @@ export const Cursor = () => {
       window.removeEventListener("resize", resize);
       window.removeEventListener("mousemove", moveCursor);
       window.removeEventListener("mouseover", onMouseOver);
+      window.removeEventListener(SPARKLE_BURST_EVENT, onSparkleBurst);
       document.body.classList.remove("cursor-none-global");
       sparklesRef.current = [];
     };
